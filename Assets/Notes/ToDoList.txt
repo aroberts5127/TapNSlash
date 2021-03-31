@@ -1,0 +1,85 @@
+- Create XML Document or Global File to record base times for 
+animations or find it dynamically when applying weapon types. 
+This will allow for altering the speed of the animation properly
+as well as allowing for the yield return to wait for the proper
+amount of time
+
+- Create UI to show the status of your character and allow for 
+navigation to different menus or hubs
+
+
+================BASE GAME====================.....................................................................................................
+- Generate Enemies
+	- Deal Damage to them X
+	- They can die X
+	- Reward XP X
+		=> Update - Scale Exp gain To Player Level
+	- Reward Items X
+	- Can Attack back
+		=> Revenge Value Overflow
+	- Scale Stats
+		=> Atk
+		=> Health
+		=> Exp(Noted Above)
+	- Classes/Types
+		= Different Weapons
+		= Different Health/Atk/Def
+		= Different Attacks/Patterns
+
+- Player Character Changes
+	- Gain XP and Level Up X
+	- Change Equipment
+		= Make Equipment a  thing that exists IP
+	- Animation Timing IP
+	- Scale Stats with level (HP, ATK, etc.)
+	- Skills/Spells/Combat Moves
+	- Dodge/Parry/Block
+
+- Weapons
+	- Have a Global List Of Weapons/Weapon Models X
+	- Create Inventory Class That Holds A List Of Weapons IP
+		=> Temporary
+	- Create XML Document That Holds Weapon Information IP
+		=> XML Document Holds:
+			=> Name/Index of Weapon Model
+			=> Weapon Name
+			=> Weapon Damage
+			=> Weapon Type
+			=> Other Effects/Stats
+- Saving/Loading
+	- Local
+	- Server/Other
+		= Don't own a server to save to unfortunately
+
+- Create Menus and Hubs
+	- Intro/Home/Welcome Screen
+		=> "Touch Screen To Start"
+		=> Create Account/Profile
+			=> Local For Now
+	- Overworld
+	- Shop
+		=> Items
+			=> Consumables (Potions, Foods, Scrolls, etc)
+		=> Weapons/Equipment
+			=> Swords, Shields, Armor, Talisman/Amulets
+		=> Spells
+			=> Spell Books To Learn New Spells
+			=> Skill Books
+			=> Has To Be Some Kind of Limit to this
+	- Guild/Mission Hall
+		=> Really Over The Top for this one to work, would need server
+	- Inventory/Player Info
+		=> Panels For Weapons, Armor, Consumables, Player Stats, etc
+
+- Defaults
+	- Starting Equipment
+	- Starting Stats
+
+===========MORE THAN JUST A PROTOTYPE===============
+- FB/Google/Apple interaction
+- Pay to Purchase Consumable (Gems, Gold, etc.)
+- Account Creation
+- Ads/Monetization
+
+- Update Art/Models/Enemies
+	=> MUST OUTSOURCE: im not that good at this.
