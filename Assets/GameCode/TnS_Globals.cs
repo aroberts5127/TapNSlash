@@ -11,7 +11,7 @@ public class TnS_Globals : MonoBehaviour {
     private TnS_Inventory priv_Inventory;
     private TnS_EquipmentManager priv_Equpment;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR //TODO - Move to some kind of test load script
     public string UE_AccountName = "Andrew";
 #endif
 

@@ -1869,6 +1869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priv_WeaponType: 0
   priv_BindToWeapon: {fileID: 0}
+  isAttacking: 0
 --- !u!4 &1750296367
 Transform:
   m_ObjectHideFlags: 0
@@ -2113,6 +2114,7 @@ GameObject:
   - component: {fileID: 2056061197}
   - component: {fileID: 2056061198}
   - component: {fileID: 2056061196}
+  - component: {fileID: 2056061199}
   m_Layer: 0
   m_Name: TnS_GlobalObject
   m_TagString: Untagged
@@ -2218,6 +2220,18 @@ MonoBehaviour:
   - {fileID: 4300000, guid: b02bf0cf0df74b04abcef9adf7fde9ea, type: 3}
   - {fileID: 4300000, guid: 30e3c1c9dc8cd284cb6759877c8a6f69, type: 3}
   - {fileID: 4300000, guid: 30aaf2e2b1c65644980a44a5c92db29f, type: 3}
+--- !u!114 &2056061199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056061192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00df318532b4644a8593dd87e799a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2114955805
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
 
 
 
-    private bool isAttacking;
+    public bool isAttacking;
 
     #endregion
 
@@ -53,10 +53,10 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
     {
         priv_playerStats = GetComponent<PlayerStats>();
         isAttacking = false;
-        
-        
+
+
     }
-    // Use this for initialization
+
     void Start()
     {
         //Debug.Log(this.gameObject.name);
@@ -77,9 +77,9 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
         priv_playerStats.PC_CurrentHealth = priv_playerStats.PC_MaxHealth;
         priv_playerStats.ExpToNextLevel = TnS_Globals.Instance.BaseExpToNextLevel;
         priv_playerStats.PC_CurrentHealth = priv_playerStats.PC_MaxHealth;
-            UpdateHealthBar();
-            UpdateLevelDisplay();
-            this.GetComponent<TnS_Magic>().InitMagic();
+        UpdateHealthBar();
+        UpdateLevelDisplay();
+        this.GetComponent<TnS_Magic>().InitMagic();
         //}
         //else
         //{
@@ -90,25 +90,7 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!isAttacking && !TnS_Globals.Instance.CurrentEnemy.Dying)
-            {
-                Debug.Log("TnS_PlayerCharacter - Update - Run Attack Funtion In Editor");
-                StartCoroutine(Attack());
-            }
-        }
-#else
-        if(Input.touchCount > 0)
-        {
-           if (!isAttacking)
-            {
-                Debug.Log("TnS_PlayerCharacter - Update - Run Attack Funtion On Device");
-                StartCoroutine(Attack());
-            }
-        }
-#endif
+
     }
 
     //void OnMouseDown()
