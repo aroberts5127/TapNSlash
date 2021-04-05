@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class TnS_Globals : MonoBehaviour {
     private TnS_Presentation priv_Presentation;
     private TnS_Inventory priv_Inventory;
     private TnS_EquipmentManager priv_Equpment;
+
+    public static event Action EnemyDeath;
 
 #if UNITY_EDITOR //TODO - Move to some kind of test load script
     public string UE_AccountName = "Andrew";
