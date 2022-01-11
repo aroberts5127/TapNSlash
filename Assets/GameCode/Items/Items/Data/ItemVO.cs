@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TEST : MonoBehaviour {
-
-
-    public List<Mesh> meshList;
+public class ItemVO
+{
+    public string name;
+    public bool isDefault;
 }

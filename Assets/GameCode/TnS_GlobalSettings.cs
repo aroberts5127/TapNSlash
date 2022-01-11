@@ -12,4 +12,5 @@ public static class TnS_GlobalSettings {
     public static string TNS_FISTTIMELOAD = "TnS_FirstTimeLoad";
     public static string TNS_ACCOUNTNAME = "TnS_AccountName";
     public static List<string> TNS_MAGIC = new List<string>{ "TNS_MAGIC1", "TNS_MAGIC2", "TNS_MAGIC3" };
+    public static string TNS_ENEMIESKILLEDLIFETIME = "TnS_EnemiesKilledLifeTime";
 }

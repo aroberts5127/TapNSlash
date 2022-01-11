@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TnS_WeaponPickup : TnS_Interactable {
 
-    public TnS_Equipment weapon;
+    public EquipmentVO weapon;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class TnS_WeaponPickup : TnS_Interactable {
         CollectWeapon(weapon);
     }
 
-    private void CollectWeapon(TnS_Equipment weapon)
+    private void CollectWeapon(EquipmentVO weapon)
     {
         Debug.Log("Weapon Name: " + weapon.name);
         //TODO - Create a Weapon Inventory List to house all the weapons/equipment the Player collects

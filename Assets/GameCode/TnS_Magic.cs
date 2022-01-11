@@ -10,18 +10,18 @@ public class TnS_Magic : MonoBehaviour{
     public List<int> MagicLevels;
     
     public void InitMagic() {
-        Debug.Log("NoOfSpells: " + NoOfSpells);
+        //Debug.Log("NoOfSpells: " + NoOfSpells);
         //MagicLevels = new List<int>(NoOfSpells);
         //IF NEW GAME
         //if (!PlayerPrefs.HasKey(TnS_GlobalSettings.TNS_FISTTIMELOAD))
         //{
         for (int i = 0; i < NoOfSpells; i++)
         {
-            Debug.Log("HERE");
+            //Debug.Log("HERE");
             int SpellLevel = 0;
             MagicLevels.Add(SpellLevel);
         }
-        Debug.Log("After Adding Spell Levels");
+        //Debug.Log("After Adding Spell Levels");
         //}
         //Not New Game (Save Data in PlayerPrefs)
         //else
@@ -35,7 +35,7 @@ public class TnS_Magic : MonoBehaviour{
         //DEBUG
         for (int j = 0; j < NoOfSpells; j++)
         {
-            Debug.Log(MagicLevels[j]);
+            //Debug.Log(MagicLevels[j]);
         }
     }
 }

@@ -50,4 +50,32 @@ public class PlayerStats : MonoBehaviour
         get { return priv_ExpToNextLevel; }
         set { priv_ExpToNextLevel = value; }
     }
+
+    public void AwardExp(int expAdded)
+    {
+        CurrentExperience += expAdded;
+        if (CurrentExperience >= ExpToNextLevel)
+        {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
+
+        PC_Level++;
+        Debug.Log("Tns_PlayerCharacter - Level Up: " + PC_Level);
+        if (CurrentExperience > ExpToNextLevel)
+        {
+            CurrentExperience = ExpToNextLevel - CurrentExperience;
+        }
+        else
+        {
+            CurrentExperience = 0;
+        }
+        ExpToNextLevel = (int)(ExpToNextLevel * 1.2f);
+        //Debug.Log("Tns_PlayerCharacter - CurExp: " + priv_playerStats.CurrentExperience);
+        //Debug.Log("TnS_PlayerCharacter - ExpToNext: " + priv_playerStats.ExpToNextLevel);
+        TnS_Globals.Instance.Player.UpdateLevelDisplay();
+    }
 }

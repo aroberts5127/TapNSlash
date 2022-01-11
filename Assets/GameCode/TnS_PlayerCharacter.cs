@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -43,23 +44,21 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
     }
     #endregion
 
-
-
-    private bool isAttacking;
+    public bool isAttacking;
 
     #endregion
 
     void Awake()
     {
-        priv_playerStats = GetComponent<PlayerStats>();
-        isAttacking = false;
-        
         
     }
-    // Use this for initialization
+
     void Start()
     {
         //Debug.Log(this.gameObject.name);
+        priv_playerStats = GetComponent<PlayerStats>();
+        isAttacking = false;
+        EncounterEventController.Instance.enemyAttackEvent += TakeDamage;
         if (TnS_Globals.Instance.Player == null)
         {
             TnS_Globals.Instance.Player = this;
@@ -77,9 +76,9 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
         priv_playerStats.PC_CurrentHealth = priv_playerStats.PC_MaxHealth;
         priv_playerStats.ExpToNextLevel = TnS_Globals.Instance.BaseExpToNextLevel;
         priv_playerStats.PC_CurrentHealth = priv_playerStats.PC_MaxHealth;
-            UpdateHealthBar();
-            UpdateLevelDisplay();
-            this.GetComponent<TnS_Magic>().InitMagic();
+        UpdateHealthBar();
+        UpdateLevelDisplay();
+        this.GetComponent<TnS_Magic>().InitMagic();
         //}
         //else
         //{
@@ -90,25 +89,7 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!isAttacking && !TnS_Globals.Instance.CurrentEnemy.Dying)
-            {
-                Debug.Log("TnS_PlayerCharacter - Update - Run Attack Funtion In Editor");
-                StartCoroutine(Attack());
-            }
-        }
-#else
-        if(Input.touchCount > 0)
-        {
-           if (!isAttacking)
-            {
-                Debug.Log("TnS_PlayerCharacter - Update - Run Attack Funtion On Device");
-                StartCoroutine(Attack());
-            }
-        }
-#endif
+
     }
 
     //void OnMouseDown()
@@ -121,20 +102,26 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
     /// Searches Through The Global For The Current Enemy And Deals Damage
     /// Will Also Begin The Animation Sequence
     /// </summary>
+    /// 
+    private void AttackFunction()
+    {
+        StartCoroutine(Attack());
+    }
     public IEnumerator Attack()
     {
         
         isAttacking = true;
-        Debug.Log("TnS_PlayerCharacter - " + isAttacking);
+        //Debug.Log("TnS_PlayerCharacter - " + isAttacking);
         this.transform.GetComponentInChildren<Animator>().Play("Attack");
-        Debug.Log("TnS_PlayerCharacter - OH YEAH! YOU LIKE THAT!?");
+        //Debug.Log("TnS_PlayerCharacter - OH YEAH! YOU LIKE THAT!?");
         yield return new WaitForSeconds(priv_AttackAnimTime /2);
         //TODO - Deal Damage to Enemy in Scene
-        TnS_Globals.Instance.CurrentEnemy.EnemyTakeDamage(priv_playerStats.PC_Attack);
+        //TnS_Globals.Instance.CurrentEnemy.EnemyTakeDamage(priv_playerStats.PC_Attack);
+        EncounterEventController.Instance.OnPlayerAttack(priv_playerStats.PC_Attack);
         yield return new WaitForSeconds(priv_AttackAnimTime / 2);
-        Debug.Log("TnS_PlayerCharacter - May Attack Again");
+        //Debug.Log("TnS_PlayerCharacter - May Attack Again");
         isAttacking = false;
-        Debug.Log("TnS_PlayerCharacter - " + isAttacking);
+        //Debug.Log("TnS_PlayerCharacter - " + isAttacking);
     }
 
     public void SetWeapon(TnS_WeaponType weapon)
@@ -154,33 +141,13 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
         }
     }
 
-    public void AwardExp(int expAdded)
+    //Should be listening for Enemy Death
+    public void AwardExp(int incExp)
     {
-        priv_playerStats.CurrentExperience += expAdded;
-        if(priv_playerStats.CurrentExperience >= priv_playerStats.ExpToNextLevel)
-        {
-            LevelUp();
-        }
+        priv_playerStats.AwardExp(incExp);
     }
 
-    public void LevelUp()
-    {
-
-        priv_playerStats.PC_Level++;
-        Debug.Log("Tns_PlayerCharacter - Level Up: " + priv_playerStats.PC_Level);
-        if (priv_playerStats.CurrentExperience > priv_playerStats.ExpToNextLevel)
-        {
-            priv_playerStats.CurrentExperience = priv_playerStats.ExpToNextLevel - priv_playerStats.CurrentExperience;
-        }
-        else
-        {
-            priv_playerStats.CurrentExperience = 0;
-        }
-        priv_playerStats.ExpToNextLevel = (int)(priv_playerStats.ExpToNextLevel * 1.2f);
-        //Debug.Log("Tns_PlayerCharacter - CurExp: " + priv_playerStats.CurrentExperience);
-        //Debug.Log("TnS_PlayerCharacter - ExpToNext: " + priv_playerStats.ExpToNextLevel);
-        UpdateLevelDisplay();
-    }
+   
 
     public void UpdateHealthBar()
     {

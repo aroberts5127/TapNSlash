@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnumUtil;
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Inventory/Weapon")]
-public class TnS_Equipment : TnS_Item {
+public class TnS_Equipment : MonoBehaviour {
 
     public EquipmentSlot equipSlot;
+    public EquipmentVO itemData;
 
     [SerializeField]
     private Mesh priv_EquipmentModel;
@@ -21,6 +23,11 @@ public class TnS_Equipment : TnS_Item {
 
     private TnS_WeaponType priv_WeaponType;
 
+    public TnS_Equipment(object data)
+    {
+        itemData = data as EquipmentVO;
+    }
+
     public Mesh WeaponModel
     {
         get { return priv_EquipmentModel; }
@@ -33,7 +40,7 @@ public class TnS_Equipment : TnS_Item {
 
     public string WeaponName
     {
-        get { return name; }
+        get { return itemData.name; }
     }
     public int WeaponAttack
     {
@@ -45,14 +52,21 @@ public class TnS_Equipment : TnS_Item {
         get { return priv_ArmorModifier; }
     }
 
-    public override void Use()
+    public TnS_Equipment()
     {
-        base.Use();
-        TnS_Globals.Instance.Equipment.Equip(this);
+        itemData = null;
+    }
+
+    public TnS_Equipment(TnS_EquipmentSO data)
+    {
+        itemData = null;
+    }
+
+    public void Use()
+    {
+        //base.Use();
+        //TnS_Globals.Instance.Equipment.Equip(this);
     }
 }
 
-public enum EquipmentSlot
-{
-    Head, Chest, Legs, Feet, MainHand, OffHand
-}
+

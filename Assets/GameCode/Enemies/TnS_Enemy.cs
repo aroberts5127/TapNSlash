@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,9 +70,19 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
 
     #endregion
 
+    
+
+    void Awake()
+    {
+        
+    }
+
+
+
     // Use this for initialization
     void Start () {
         priv_NameTextObj.text = this.priv_Name;
+        EncounterEventController.Instance.playerAttackEvent += TakeDamage;
 	}
 	
 	// Update is called once per frame
@@ -88,26 +99,20 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
         //TODO - Enemy Attack
         //TODO - Initiate Player Dodge/Guard Chance
         //TODO - ENEMY CANNOT ALWAYS BE DEFENDED AGAINST!
+        EncounterEventController.Instance.OnEnemyAttack(Attack);
         TnS_Globals.Instance.Player.UpdateHealthBar();
-    }
-
-    public void EnemyTakeDamage(int incDamage)
-    {
-        if(!isAttacking)
-            this.GetComponent<Animator>().Play("damage");
-        Debug.Log("TnS_Enemy - Health: " + this.Health);
-        this.Health -= incDamage;
-        Debug.Log("TnS_Enemy - Health After Damage: " + this.Health);
-        if(this.Health <= 0)
-        {
-            Debug.Log("TnS_Enemy - I'm Dead");
-            StartCoroutine(Die());
-        }
     }
 
     //TODO - SOLID Implement - move this into a response to a PlayerAttack Action/Event
     public void TakeDamage(int incDamage)
     {
+        if (!isAttacking)
+            this.GetComponent<Animator>().Play("damage");
+        Health = Health - incDamage;
+        if(Health <= 0)
+        {
+            StartCoroutine(Die());
+        }
     }
 
     public IEnumerator Die()
@@ -115,17 +120,19 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
         isDying = true;
         this.GetComponent<Animator>().speed = 2.0f;
         this.GetComponent<Animator>().Play("die");
-        //TODO - Graphics For Awarded EXP
+
+        //THIS NEEDS TO BE MOVED TO EVENTS
         TnS_Globals.Instance.Player.AwardExp(this.ExpReward);
         DropItems();
-        yield return new WaitForSeconds(1.9f);
-        TnS_Globals.Instance.Presentation.SpawnEnemy();
+        yield return new WaitForSeconds(2.0f);
+        EncounterEventController.Instance.playerAttackEvent -= TakeDamage;
+        EncounterEventController.Instance.OnEnemyDead();
         Destroy(this.gameObject);
     }
 
     public void DropItems()
     {
-        Debug.Log("ENEMY - Dropping Items");
+        //Debug.Log("ENEMY - Dropping Items");
         for (int i = 0; i < priv_DroppableItems.Count; i++)
         {
             if (priv_DroppableItemRates[i] == 100)
@@ -134,7 +141,7 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
             }
             else
             {
-                float r = Random.Range(0, 1);
+                float r = UnityEngine.Random.Range(0, 1);
                 if (0 <= r && r <= priv_DroppableItemRates[i] / 100)
                 {
                     GenerateItem(priv_DroppableItems[i]);
@@ -148,14 +155,22 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
         GameObject newItem = Instantiate(item.gameObject, TnS_Globals.Instance.LootSpawn, false);
         if (item.GetComponent<TnS_GoldPickup>())
         {
-            int goldDropValue = Random.Range(priv_GoldDropValueMin, priv_GoldDropValueMax);
+            int goldDropValue = UnityEngine.Random.Range(priv_GoldDropValueMin, priv_GoldDropValueMax);
             item.GetComponent<TnS_GoldPickup>().goldValue = goldDropValue;
         }
         newItem.transform.position = TnS_Globals.Instance.LootSpawn.position;
     }
 }
 
-public interface iDamagable
+
+public struct EnemyRewards
 {
-    void TakeDamage(int incDamage);
+    int Exp;
+    List<TnS_Interactable> loot;
+
+    EnemyRewards(int e, List<TnS_Interactable> l)
+    {
+        Exp = e;
+        loot = l;
+    }
 }

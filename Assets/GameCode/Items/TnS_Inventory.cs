@@ -6,12 +6,12 @@ public class TnS_Inventory : MonoBehaviour {
 
 
     public List<TnS_Item> itemList = new List<TnS_Item>();
-    public List<TnS_Equipment> weaponList = new List<TnS_Equipment>();
+    public List<EquipmentVO> weaponList = new List<EquipmentVO>();
     public int Gold = 0;
 
     public void AddItem(TnS_Item item)
     {
-        if (!item.isDefault)
+        if (!item.itemData.isDefault)
         {
             int v = itemList.Count;
             itemList.Add(item);
@@ -22,12 +22,12 @@ public class TnS_Inventory : MonoBehaviour {
         }
     }
 
-    public void AddWeapon(TnS_Equipment weapon)
+    public void AddWeapon(EquipmentVO weapon)
     {
         if (!weapon.isDefault)
         {
             int v = weaponList.Count;
-            itemList.Add(weapon);
+            //itemList.Add(weapon);
             if (v != weaponList.Count)
             {
                 Debug.Log("Successfully Added Item");
