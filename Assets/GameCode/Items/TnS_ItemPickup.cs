@@ -21,7 +21,7 @@ public class TnS_ItemPickup : TnS_Interactable{
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("INTERACTABLE - Picking Up " + item.name);
+        //Debug.Log("INTERACTABLE - Picking Up " + item.name);
         CollectItem();
     }
 

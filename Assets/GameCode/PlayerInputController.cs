@@ -25,7 +25,7 @@ public class PlayerInputController : MonoBehaviour
 #else
         if(Input.touchCount > 0)
         {
-           if (!TnS_Globals.Instance.Player.isAttacking)
+           if (!TnS_Globals.Instance.Player.isAttacking && !TnS_Globals.Instance.CurrentEnemy.Dying)
             {
                 //Debug.Log("TnS_PlayerCharacter - Update - Run Attack Funtion On Device");
                 StartCoroutine(TnS_Globals.Instance.Player.Attack());

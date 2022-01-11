@@ -15,7 +15,7 @@ public class TnS_GoldPickup : TnS_Interactable {
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("INTERACTABLE - Collecting " + goldValue + " Gold");
+        //Debug.Log("INTERACTABLE - Collecting " + goldValue + " Gold");
         CollectGold(goldValue);
     }
 

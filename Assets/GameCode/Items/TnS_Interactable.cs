@@ -7,7 +7,7 @@ public class TnS_Interactable : MonoBehaviour {
 
     public virtual void Interact()
     {
-        Debug.Log("Interacting With " + this.name);
+        //Debug.Log("Interacting With " + this.name);
         Destroy(this.gameObject);
     }
 

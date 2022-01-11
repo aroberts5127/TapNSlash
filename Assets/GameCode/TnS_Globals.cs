@@ -15,6 +15,7 @@ public class TnS_Globals : MonoBehaviour {
     public static event Action EnemyDeath;
 
 #if UNITY_EDITOR //TODO - Move to some kind of test load script
+    [HideInInspector]
     public string UE_AccountName = "Andrew";
 #endif
 
@@ -26,6 +27,8 @@ public class TnS_Globals : MonoBehaviour {
 
     [SerializeField]
     private Transform priv_EnemySpawnLocation;
+    [SerializeField]
+    private Transform priv_EnemySpawnParent;
 
     [SerializeField]
     private List<GameObject> priv_WeaponModels;
@@ -85,6 +88,10 @@ public class TnS_Globals : MonoBehaviour {
     public Transform EnemySpawnLocation
     {
         get { return priv_EnemySpawnLocation; }
+    }
+    public Transform EnemySpawnParent
+    {
+        get { return priv_EnemySpawnParent; }
     }
 
     public int GlobalEnemyRevengeValue

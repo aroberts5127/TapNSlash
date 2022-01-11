@@ -27,7 +27,7 @@ public class TnS_Presentation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //m_AtkButton.onClick.AddListener(delegate { TnS_Globals.Instance.Player.Attack(); }); 
-        SpawnEnemy();
+        
         if(!TnS_GlobalSettings.RELEASE_VERSION)
             priv_AccountName_Text.text = TnS_Globals.Instance.UE_AccountName;
         else
@@ -40,11 +40,5 @@ public class TnS_Presentation : MonoBehaviour {
 		
 	}
 
-    public void SpawnEnemy()
-    {
-        int r = Random.Range(0, TnS_Globals.Instance.AvailableEnemies.Count);
-        GameObject newEnemy = Instantiate(TnS_Globals.Instance.AvailableEnemies[r]);
-        newEnemy.transform.position = TnS_Globals.Instance.EnemySpawnLocation.position;
-        TnS_Globals.Instance.CurrentEnemy = newEnemy.GetComponent<TnS_Enemy>();
-    }
+    
 }

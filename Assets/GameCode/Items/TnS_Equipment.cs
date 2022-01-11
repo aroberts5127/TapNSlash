@@ -48,7 +48,7 @@ public class TnS_Equipment : TnS_Item {
     public override void Use()
     {
         base.Use();
-        TnS_Globals.Instance.Equipment.Equip(this);
+        //TnS_Globals.Instance.Equipment.Equip(this);
     }
 }
 

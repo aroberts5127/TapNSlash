@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/TnS.unity
+- path: Assets/Combat_Normal.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

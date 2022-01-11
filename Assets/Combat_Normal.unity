@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4475476, g: 0.49750793, b: 0.57533175, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -121,6 +121,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &139552067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139552068}
+  - component: {fileID: 139552069}
+  m_Layer: 0
+  m_Name: EnemySpawnParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139552068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139552067}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139552069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139552067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704d924f658851041903e2616543863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339031926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,9 +2155,10 @@ GameObject:
   - component: {fileID: 2056061195}
   - component: {fileID: 2056061194}
   - component: {fileID: 2056061197}
-  - component: {fileID: 2056061198}
   - component: {fileID: 2056061196}
   - component: {fileID: 2056061199}
+  - component: {fileID: 2056061200}
+  - component: {fileID: 2056061201}
   m_Layer: 0
   m_Name: TnS_GlobalObject
   m_TagString: Untagged
@@ -2169,6 +2213,7 @@ MonoBehaviour:
   - {fileID: 113944, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
   - {fileID: 113944, guid: 9560be75b815d8d4d8ab36c5d32f3ef7, type: 3}
   priv_EnemySpawnLocation: {fileID: 1321616177}
+  priv_EnemySpawnParent: {fileID: 139552068}
   priv_WeaponModels: []
   priv_LootSpawnLocation: {fileID: 1495091076}
   BaseExpToNextLevel: 100
@@ -2204,22 +2249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentEquipment: []
---- !u!114 &2056061198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056061192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3552e332ab7519944817a6e8c0f99fd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshList:
-  - {fileID: 4300000, guid: b02bf0cf0df74b04abcef9adf7fde9ea, type: 3}
-  - {fileID: 4300000, guid: 30e3c1c9dc8cd284cb6759877c8a6f69, type: 3}
-  - {fileID: 4300000, guid: 30aaf2e2b1c65644980a44a5c92db29f, type: 3}
 --- !u!114 &2056061199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2230,6 +2259,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e00df318532b4644a8593dd87e799a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2056061200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056061192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c55fbaac74f2264a9ebb58b570faa5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2056061201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056061192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14ab37b646cf3c40b11da66de0f4a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2114955805

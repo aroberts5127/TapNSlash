@@ -50,14 +50,15 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
 
     void Awake()
     {
-        priv_playerStats = GetComponent<PlayerStats>();
-        isAttacking = false;
         
     }
 
     void Start()
     {
         //Debug.Log(this.gameObject.name);
+        priv_playerStats = GetComponent<PlayerStats>();
+        isAttacking = false;
+        EncounterEventController.Instance.enemyAttackEvent += TakeDamage;
         if (TnS_Globals.Instance.Player == null)
         {
             TnS_Globals.Instance.Player = this;
@@ -116,6 +117,7 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
         yield return new WaitForSeconds(priv_AttackAnimTime /2);
         //TODO - Deal Damage to Enemy in Scene
         //TnS_Globals.Instance.CurrentEnemy.EnemyTakeDamage(priv_playerStats.PC_Attack);
+        EncounterEventController.Instance.OnPlayerAttack(priv_playerStats.PC_Attack);
         yield return new WaitForSeconds(priv_AttackAnimTime / 2);
         //Debug.Log("TnS_PlayerCharacter - May Attack Again");
         isAttacking = false;
