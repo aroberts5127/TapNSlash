@@ -68,6 +68,8 @@
     <Compile Include="Assets\GameCode\Enemies\TnS_EnemySpawner.cs" />
     <Compile Include="Assets\GameCode\EventScripts\EncounterEventController.cs" />
     <Compile Include="Assets\GameCode\EventScripts\UIEventController.cs" />
+    <Compile Include="Assets\GameCode\Initialization\IInitializationClass.cs" />
+    <Compile Include="Assets\GameCode\Initialization\MainInitialization.cs" />
     <Compile Include="Assets\GameCode\Items\Interactable\TnS_GoldPickup.cs" />
     <Compile Include="Assets\GameCode\Items\Interactable\TnS_Interactable.cs" />
     <Compile Include="Assets\GameCode\Items\Interactable\TnS_ItemPickup.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Assets\GameCode\TnS_Magic.cs" />
     <Compile Include="Assets\GameCode\TnS_PlayerCharacter.cs" />
     <Compile Include="Assets\GameCode\TnS_Presentation.cs" />
+    <Compile Include="Assets\GameCode\UIControllers\MainMenuController.cs" />
     <Compile Include="Assets\GameCode\Utilities\EnumUtil.cs" />
     <Compile Include="Assets\GameCode\iDamagable.cs" />
     <Compile Include="Assets\IMPORTS\TAZO_3D_C\DemoScene\Action_Manage.cs" />

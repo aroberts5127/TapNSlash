@@ -6,7 +6,7 @@ using EnumUtil;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Inventory/Weapon")]
 public class TnS_Equipment : MonoBehaviour {
 
-    public EquipmentSlot equipSlot;
+    public EnumEquipmentSlot equipSlot;
     public EquipmentVO itemData;
 
     [SerializeField]
@@ -54,12 +54,12 @@ public class TnS_Equipment : MonoBehaviour {
 
     public TnS_Equipment()
     {
-        itemData = null;
+        itemData = new EquipmentVO();
     }
 
     public TnS_Equipment(TnS_EquipmentSO data)
     {
-        itemData = null;
+        itemData = new EquipmentVO();
     }
 
     public void Use()
