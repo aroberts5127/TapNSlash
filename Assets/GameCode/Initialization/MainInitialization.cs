@@ -7,6 +7,7 @@ using EnumUtil;
 public class MainInitialization : MonoBehaviour
 {
     public static MainInitialization Instance;
+
     private List<IInitializationClass> initializationClasses = new List<IInitializationClass>();
     public EnumInitializationStatus _initializationStatus { get; private set; }
 
@@ -24,6 +25,9 @@ public class MainInitialization : MonoBehaviour
         }
 
         //ADD INIT CLASSES TO List Here;
+        initializationClasses.Add(PlayerAccountInformation.Instance);
+
+        InitializeApplicationClasses();
     }
 
     public void InitializeApplicationClasses()

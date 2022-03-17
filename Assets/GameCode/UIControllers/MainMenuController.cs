@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        continueButton.onClick.AddListener(delegate { OnClickLoadGame(); });
     }
 
     // Update is called once per frame
@@ -28,9 +28,14 @@ public class MainMenuController : MonoBehaviour
 
     private IEnumerator LoadGame()
     {
-        SceneManager.LoadSceneAsync("Overworld");
+        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync("Overworld");
         //INIT DATA
-        while(!MainInitialization.Instance._allInitialized)
+        while (!MainInitialization.Instance._allInitialized)
             yield return null;
+        while (!sceneLoad.isDone)
+        {
+            Debug.Log("Loading");
+            yield return null;
+        }
     }
 }
