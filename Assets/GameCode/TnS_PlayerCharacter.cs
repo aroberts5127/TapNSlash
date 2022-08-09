@@ -71,7 +71,7 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
         //if (PlayerPrefs.HasKey(TnS_GlobalSettings.TNS_FISTTIMELOAD))
         //{
         Debug.Log("FirstLoad");
-            SetWeapon(TnS_WeaponType.SWaSH);
+        SetWeapon(TnS_WeaponType.SWaSH);
         priv_playerStats.PC_Level = 1;
         priv_playerStats.PC_CurrentHealth = priv_playerStats.PC_MaxHealth;
         priv_playerStats.ExpToNextLevel = TnS_Globals.Instance.BaseExpToNextLevel;

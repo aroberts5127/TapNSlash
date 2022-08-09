@@ -27,15 +27,11 @@ public class TnS_Inventory : MonoBehaviour {
         if (!weapon.isDefault)
         {
             int v = weaponList.Count;
-            //itemList.Add(weapon);
+            weaponList.Add(weapon);
             if (v != weaponList.Count)
             {
                 Debug.Log("Successfully Added Item");
             }
-            //if(v == 0)
-            //{
-            //    //TODO - Equip Weapon because the default stick is equipped
-            //}
         }
     }
 
@@ -43,6 +39,16 @@ public class TnS_Inventory : MonoBehaviour {
     {
         int v = itemList.Count;
         itemList.Remove(item);
+        if (v != itemList.Count)
+        {
+            Debug.Log("Successfully Removed Item");
+        }
+    }
+
+    public void RemoveWeapon(EquipmentVO weapon)
+    {
+        int v = itemList.Count;
+        weaponList.Remove(weapon);
         if (v != itemList.Count)
         {
             Debug.Log("Successfully Removed Item");

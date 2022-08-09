@@ -68,6 +68,9 @@
     <Compile Include="Assets\GameCode\Enemies\TnS_EnemySpawner.cs" />
     <Compile Include="Assets\GameCode\EventScripts\EncounterEventController.cs" />
     <Compile Include="Assets\GameCode\EventScripts\UIEventController.cs" />
+    <Compile Include="Assets\GameCode\Initialization\IInitializationClass.cs" />
+    <Compile Include="Assets\GameCode\Initialization\MainInitialization.cs" />
+    <Compile Include="Assets\GameCode\Initialization\SingletonClass.cs" />
     <Compile Include="Assets\GameCode\Items\Interactable\TnS_GoldPickup.cs" />
     <Compile Include="Assets\GameCode\Items\Interactable\TnS_Interactable.cs" />
     <Compile Include="Assets\GameCode\Items\Interactable\TnS_ItemPickup.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Assets\GameCode\Items\Items\TnS_Equipment.cs" />
     <Compile Include="Assets\GameCode\Items\Items\TnS_Item.cs" />
     <Compile Include="Assets\GameCode\Items\TnS_Inventory.cs" />
+    <Compile Include="Assets\GameCode\OverworldController.cs" />
     <Compile Include="Assets\GameCode\PlayerAccount\PlayerAccountInformation.cs" />
     <Compile Include="Assets\GameCode\PlayerInputController.cs" />
     <Compile Include="Assets\GameCode\PlayerStats.cs" />
@@ -88,7 +92,10 @@
     <Compile Include="Assets\GameCode\TnS_Magic.cs" />
     <Compile Include="Assets\GameCode\TnS_PlayerCharacter.cs" />
     <Compile Include="Assets\GameCode\TnS_Presentation.cs" />
+    <Compile Include="Assets\GameCode\UIControllers\MainMenuController.cs" />
+    <Compile Include="Assets\GameCode\UIControllers\UIManager.cs" />
     <Compile Include="Assets\GameCode\Utilities\EnumUtil.cs" />
+    <Compile Include="Assets\GameCode\Utilities\PrefabURL.cs" />
     <Compile Include="Assets\GameCode\iDamagable.cs" />
     <Compile Include="Assets\IMPORTS\TAZO_3D_C\DemoScene\Action_Manage.cs" />
     <Compile Include="Assets\IMPORTS\TAZO_3D_C\DemoScene\demo.cs" />
@@ -106,6 +113,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Materials\Fire Particle Shader.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Notes\UIManagerNotes.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Notes\ToDoList.txt" />

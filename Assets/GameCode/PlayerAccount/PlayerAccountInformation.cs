@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAccountInformation : MonoBehaviour
+public class PlayerAccountInformation : SingletonClass<PlayerAccountInformation>, IInitializationClass
 {
-    public static PlayerAccountInformation Instance;
-
     private int m_enemiesKilledLifetime;
+    private bool _initialized;
 
     public int EnemiesKilledLifetime
     {
         get { return m_enemiesKilledLifetime; }
         set { m_enemiesKilledLifetime = value; }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public bool AllInitialized => _initialized;
+
+    public void SaveEnemiesKilledValue()
     {
-        if(PlayerAccountInformation.Instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            PlayerAccountInformation.Instance = this;
-        }
+        EnemiesKilledLifetime++;
+        Debug.Log("ACCOUNT - Enemies Killed: " + EnemiesKilledLifetime);
+        PlayerPrefs.SetInt(TnS_GlobalSettings.TNS_ENEMIESKILLEDLIFETIME, EnemiesKilledLifetime);
+    }
+
+    public void InitializeClass()
+    {
+        Debug.Log("PlayerAccountInformation");
         if (PlayerPrefs.HasKey(TnS_GlobalSettings.TNS_ENEMIESKILLEDLIFETIME))
         {
             EnemiesKilledLifetime = PlayerPrefs.GetInt(TnS_GlobalSettings.TNS_ENEMIESKILLEDLIFETIME);
@@ -33,19 +34,11 @@ public class PlayerAccountInformation : MonoBehaviour
             EnemiesKilledLifetime = 0;
             PlayerPrefs.SetInt(TnS_GlobalSettings.TNS_ENEMIESKILLEDLIFETIME, EnemiesKilledLifetime);
         }
-        EncounterEventController.Instance.enemyDeathEvent += SaveEnemiesKilledValue;
+        _initialized = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WaitingOnOtherInit()
     {
         
-    }
-
-    public void SaveEnemiesKilledValue()
-    {
-        EnemiesKilledLifetime++;
-        Debug.Log("ACCOUNT - Enemies Killed: " + EnemiesKilledLifetime);
-        PlayerPrefs.SetInt(TnS_GlobalSettings.TNS_ENEMIESKILLEDLIFETIME, EnemiesKilledLifetime);
     }
 }
