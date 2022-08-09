@@ -26,6 +26,7 @@ public class MainInitialization : MonoBehaviour
 
         //ADD INIT CLASSES TO List Here;
         initializationClasses.Add(PlayerAccountInformation.Instance);
+        initializationClasses.Add(UIManager.Instance);
 
         InitializeApplicationClasses();
     }

@@ -1,0 +1,23 @@
+class UIManager: Monobehavior, Singleton{
+	List<IUIScreenBehavior> screensNeededInOpenScene;
+
+	OnSceneLoaded(){
+		screensNeededInOpenScene.Clear();
+	}
+}
+
+
+public Interface IUIScreenBehavior{
+
+	public eScreenID _screenID;
+
+	public void Setup(object data = null);
+}
+
+public UIScreen: Monobehavior, IUIScreenBehavior{
+	_screenID = eScreenID.base;
+	
+	public virtual void Setup(object data = null){
+		console.log("Setting up screen: " + _screenID);
+	}
+}

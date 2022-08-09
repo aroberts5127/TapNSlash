@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using EnumUtil;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuController : MonoBehaviour, IUIScreenBehavior
 {
 
     [SerializeField]
     private Button continueButton;
-    // Start is called before the first frame update
-    void Start()
+
+    public eScreenID ScreenID { get { return eScreenID.mainMenu; } set { } }
+    
+    public void Setup(object data)
     {
         continueButton.onClick.AddListener(delegate { OnClickLoadGame(); });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnClickLoadGame()

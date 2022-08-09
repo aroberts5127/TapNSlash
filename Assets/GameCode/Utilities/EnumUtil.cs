@@ -8,4 +8,10 @@
     {
         Head, Chest, Legs, Feet, MainHand, OffHand
     }
+
+    public enum eScreenID
+    {
+        none,
+        mainMenu
+    }
 }
