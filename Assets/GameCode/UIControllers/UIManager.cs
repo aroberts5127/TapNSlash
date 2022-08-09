@@ -41,5 +41,5 @@ public interface IUIScreenBehavior
 { 
     eScreenID ScreenID { get; set; }
 
-    public void Setup(object data = null);
+    void Setup(object data = null);
 }
