@@ -92,36 +92,18 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
 
     }
 
-    //void OnMouseDown()
-    //{
-    //    StartCoroutine(Attack());
-    //}
-
-    #region PUBLIC FUNCTIONS
-    /// <summary>
-    /// Searches Through The Global For The Current Enemy And Deals Damage
-    /// Will Also Begin The Animation Sequence
-    /// </summary>
-    /// 
-    private void AttackFunction()
-    {
-        StartCoroutine(Attack());
-    }
     public IEnumerator Attack()
-    {
-        
+    {        
         isAttacking = true;
-        //Debug.Log("TnS_PlayerCharacter - " + isAttacking);
         this.transform.GetComponentInChildren<Animator>().Play("Attack");
-        //Debug.Log("TnS_PlayerCharacter - OH YEAH! YOU LIKE THAT!?");
         yield return new WaitForSeconds(priv_AttackAnimTime /2);
-        //TODO - Deal Damage to Enemy in Scene
-        //TnS_Globals.Instance.CurrentEnemy.EnemyTakeDamage(priv_playerStats.PC_Attack);
         EncounterEventController.Instance.OnPlayerAttack(priv_playerStats.PC_Attack);
         yield return new WaitForSeconds(priv_AttackAnimTime / 2);
-        //Debug.Log("TnS_PlayerCharacter - May Attack Again");
         isAttacking = false;
-        //Debug.Log("TnS_PlayerCharacter - " + isAttacking);
+    }
+    public void AwardExp(int incExp)
+    {
+        priv_playerStats.AwardExp(incExp);
     }
 
     public void SetWeapon(TnS_WeaponType weapon)
@@ -141,14 +123,6 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
         }
     }
 
-    //Should be listening for Enemy Death
-    public void AwardExp(int incExp)
-    {
-        priv_playerStats.AwardExp(incExp);
-    }
-
-   
-
     public void UpdateHealthBar()
     {
         TnS_Globals.Instance.Presentation.HealthBarGO.transform.Find("BarFill").GetComponent<Image>().fillAmount = (priv_playerStats.PC_CurrentHealth / priv_playerStats.PC_MaxHealth);
@@ -158,12 +132,10 @@ public class TnS_PlayerCharacter : MonoBehaviour, iDamagable
     {
         TnS_Globals.Instance.Presentation.LevelText.text = priv_playerStats.PC_Level.ToString();
     }
-    //TODO - SOLID: make this react to Enemy Attack Action/Event
     public void TakeDamage(int incDamage)
     {
 
     }
-    #endregion
 
     #region PRIVATE FUNTIONS
 

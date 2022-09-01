@@ -12,8 +12,6 @@ public class EncounterEventController : MonoBehaviour
             Destroy(this);
         Instance = this;
     }
-
-
     public static EncounterEventController Instance;
 
     public event Action<int> playerAttackEvent;

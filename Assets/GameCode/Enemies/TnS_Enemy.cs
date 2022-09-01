@@ -70,29 +70,21 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
 
     #endregion
 
-    
-
     void Awake()
     {
         
     }
 
-
-
-    // Use this for initialization
     void Start () {
         priv_NameTextObj.text = this.priv_Name;
         EncounterEventController.Instance.playerAttackEvent += TakeDamage;
-	}
-	
-	// Update is called once per frame
+	}	
 	void Update () {
 		if(priv_EnemyRevengeValue <= TnS_Globals.Instance.GlobalEnemyRevengeValue)
         {
             EnemyAttack();
         }
 	}
-
     private void EnemyAttack()
     {
         isAttacking = true;
@@ -103,7 +95,6 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
         TnS_Globals.Instance.Player.UpdateHealthBar();
     }
 
-    //TODO - SOLID Implement - move this into a response to a PlayerAttack Action/Event
     public void TakeDamage(int incDamage)
     {
         if (!isAttacking)
@@ -114,7 +105,6 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
             StartCoroutine(Die());
         }
     }
-
     public IEnumerator Die()
     {
         isDying = true;
@@ -129,7 +119,6 @@ public class TnS_Enemy : MonoBehaviour, iDamagable {
         EncounterEventController.Instance.OnEnemyDead();
         Destroy(this.gameObject);
     }
-
     public void DropItems()
     {
         //Debug.Log("ENEMY - Dropping Items");
